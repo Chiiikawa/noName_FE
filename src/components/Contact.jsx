@@ -7,8 +7,8 @@ function Contact() {
 
   return(
     <div>
+      <h2>about</h2>
       <h1>PROJ. NO NAME</h1>
-      <h1>콘텍어스</h1>
       <h2 style={ { color: 'red' } }>
         <a href="https://www.notion.so/officialjoshua/project-NO-NAME-94d8c7b211f940cb9d6c4240ebc2db31?pvs=4" >
           Notion

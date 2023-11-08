@@ -8,7 +8,6 @@ function Profile() {
 
   return(
     <div>
-      <h1>PROJ. NO NAME </h1>
       <h1>프로필</h1>
       TEST
       <br></br>

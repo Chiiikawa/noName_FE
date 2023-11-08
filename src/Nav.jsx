@@ -11,8 +11,7 @@ function Nav() {
       <Link className="navMenu" to={'/mypage'}>MYPAGE /</Link>
       <Link className="navMenu" to={'/result'}>RESULT /</Link>
       <Link className="navMenu" to={'/contact'}>CONTACT US /</Link>
-      <Link className="navMenu" to={'/test'}>Testing /</Link>
-
+      
       <Link className="navMenu_r" to={'/profile'}>PROFILE /</Link>
       <Link className="navMenu_r" to={'/login'}>LOGIN /</Link>
     </div>

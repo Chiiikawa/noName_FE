@@ -2,8 +2,6 @@ import React from 'react';
 import '../App.css';
 
 
-
-
 function Mypage() {
 
   return(

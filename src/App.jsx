@@ -9,7 +9,6 @@ import Signup from './components/Signup.jsx';
 import Mypage from './components/mypage.jsx';
 import Profile from './components/profile.jsx';
 import Result from './components/result.jsx';
-import ResponsiveAppBar from './components/navtest.jsx'
 
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
           <Route path="/mypage" element={<Mypage />}/>
           <Route path="/profile" element={<Profile />}/> 
           <Route path="/result" element={<Result />}/> 
-          <Route path="/test" element={<ResponsiveAppBar />}/>
         </Routes>
       </div>
     </BrowserRouter>

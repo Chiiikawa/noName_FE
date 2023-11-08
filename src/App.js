@@ -8,13 +8,8 @@ import Contact from './components/Contact.js';
 function App() {
   return (
     <BrowserRouter>
-<<<<<<< Updated upstream
       <div className="App">
         <Nav />;
-=======
-      <div className="App" style={{backgroundImage: 'url(https://ccdn.lezhin.com/v2/comics/5469317090312192/images/wide.jpg?updated=1634099797967&width=632)'}}>
-        <Nav />
->>>>>>> Stashed changes
         <Routes>
           <Route path="/" element={<Main />}/>
           <Route path="/contact" element={<Contact />}/>

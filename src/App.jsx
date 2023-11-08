@@ -4,11 +4,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './Nav.jsx';
 import Main from './components/Main.jsx';
 import Contact from './components/Contact.jsx';
-import Login from './components/login.jsx';
+import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
-import Mypage from './components/mypage.jsx';
-import Profile from './components/profile.jsx';
-import Result from './components/result.jsx';
+import Mypage from './components/Mypage.jsx';
+import Profile from './components/Profile.jsx';
+import Result from './components/Result.jsx';
 
 
 function App() {

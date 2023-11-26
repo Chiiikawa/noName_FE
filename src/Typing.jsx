@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const TypingTitle = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [count, setCount] = useState(0);
-  const completionWord = "Create your æ";
+  const completionWord = "reate your æ";
 
   useEffect(() => {
     const typingInterval = setInterval(() => {
@@ -14,10 +14,10 @@ const TypingTitle = () => {
           ? prevTitleValue + completionWord[count]
           : completionWord[0];
         setCount(count + 1);
-
+        // 이거 글자 초기화되면, 자꾸 쪼그라들어서 일단 이렇게 해둠
         if (count >= completionWord.length) {
           setCount(0);
-          setBlogTitle("");
+          setBlogTitle("C");
         }
 
         return result;
@@ -29,7 +29,11 @@ const TypingTitle = () => {
     };
   });
 
-  return <h1 className="main-title">{blogTitle}</h1>;
+  return (
+    <div className="TypingBox">
+      <h1 className="main-title">{blogTitle}</h1>
+    </div>
+  );
 };
 
 export default TypingTitle;

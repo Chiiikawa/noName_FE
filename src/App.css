@@ -50,3 +50,7 @@ button:hover {
   background: yellow;
   transition: ease 0.5s;
 }
+
+.TypiingBox {
+  height: 500px;
+}

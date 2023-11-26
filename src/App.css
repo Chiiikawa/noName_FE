@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  float: left;
 }
 
 .App-logo {
@@ -35,4 +36,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button:focus {
+  outline: none;
+}
+button:active {
+  color: blue;
+}
+
+button:hover {
+  cursor: pointer;
+  background: yellow;
+  transition: ease 0.5s;
 }

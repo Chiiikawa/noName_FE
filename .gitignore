@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Asset Directory
+/Assets
+
 # dependencies
 /node_modules
 /.pnp

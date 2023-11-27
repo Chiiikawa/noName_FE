@@ -1,7 +1,7 @@
 /* 모달창을 화면 중앙. 최상단에 노출 */
 .modal {
   /* 모달창 크기 */
-  width: 1000px;
+  width: 30%;
   height: 500px;
 
   /* 최상단 위치 */
@@ -18,6 +18,7 @@
 
   /* 모달창 디자인 */
   background-color: pink;
+  opacity: 0.7;
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -31,18 +32,25 @@
 }
 
 .modalbox {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgb(0, 0, 0, 0.6);
   backdrop-filter: blur(5px);
+  z-index: 999;
 }
 
-.fombox {
+.formbox {
   text-align: center;
 }
 
 .Title {
   top: 30px;
+}
+
+.signupBtn:hover {
+  width: 280px;
+  background-color: pink;
 }

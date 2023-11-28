@@ -31,7 +31,7 @@ function Signin({ setModalOpen, id, title, content, writer }: PropsType) {
             </div>
             <div className="formbox">
               <h3>아이디가 없으십니까?</h3>
-              <button onClick={goToSignUp}>SignUp</button>
+              <button className="signupBtn" onClick={goToSignUp}>SignUp</button>
             </div>
         </div>
       </div>

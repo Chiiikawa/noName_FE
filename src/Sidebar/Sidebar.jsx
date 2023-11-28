@@ -1,8 +1,8 @@
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
-import "./Sidebar.css";
+import "../Layout.css";
 import Signin from "../Modals/signInModal.jsx";
-import ModalAccManager from "../Modals/ManageAccModal.jsx";
+import ModalAccManager from "../Modals/MNG-ACC-Modal.jsx";
 
 // 좌측에 위치할 메뉴들은 기본적으로 출력, 우측에 위치할 userMenu는 조건에 따라 출력
 function Sidebar() {

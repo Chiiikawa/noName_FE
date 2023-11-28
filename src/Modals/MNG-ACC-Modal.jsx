@@ -12,7 +12,12 @@ function ModalAccManager({ setModalOpen, id, title, content, writer }: PropsType
             <button className={styles.close} onClick={closeModal}>
                 X
             </button>
-            <p>ManageAccModal</p>
+            <p>@username</p>
+            <label>Email: </label>
+            <input type="Email" />
+            <br/>
+            <label>Password</label>
+            <input type="Password" />
         </div>
       </div>
     );

@@ -13,7 +13,7 @@ function SignIn() {
 
   return (
     <div>
-      <button onClick={showModal}>모달 띄우기</button>
+      <button onClick={showModal}>Sign In</button>
       {modalOpen && <Signin setModalOpen={setModalOpen} />}
     </div>
   );

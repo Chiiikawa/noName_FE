@@ -1,17 +1,20 @@
 import React from "react";
-import TypingTitle from "../Typing.jsx";
-import Signup from "../Modal/signupModal.jsx";
 
 function Login() {
-  function Hi() {
-    alert("Hi");
-  }
   return (
     <>
-      <button onClick={Hi}>Hi</button>
-      <Signup />
-      <h1>Hi I'm Joshua</h1>
-      <TypingTitle />
+      <div className="formbox">
+        <label>*Email</label>
+        <input type="email" />
+      </div>
+      <div className="formbox">
+        <label>*password</label>
+        <input type="Password" />
+      </div>
+      <div className="btn">
+        <button>SignIn</button>
+        <h3>핸들 사인인 통해서 isAuth 부탁</h3>
+      </div>
     </>
   );
 }

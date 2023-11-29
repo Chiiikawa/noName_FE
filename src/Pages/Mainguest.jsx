@@ -50,9 +50,6 @@ function Mainguest() {
   // DALL-E에 사용할 prompt를 서버에 전달하는 함수
   async function createPostImage() {
     try {
-      console.log("createbarinput:", createbarinput)
-      console.log("TOKEN:", { Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN") })
-      console.log("Address:", `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/dalle/`)
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/dalle/`,
         {
@@ -62,7 +59,6 @@ function Mainguest() {
           headers: { Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN") }, // 토큰 전달
         }
       );
-      console.log(createbarinput)
       if (response) {
         setPrompt(createbarinput)
         setGeneratedImageUrl(response.data.image)
@@ -91,7 +87,12 @@ function Mainguest() {
       />
         <button className='Dalle_createbutton' onClick={createPostImage}>만들기</button>
       {postlist.map((posts) => (
-        <Posting key={posts.id} id={posts.id} image={posts.image} title={posts.title} content={posts.content} />
+        <Posting key={posts.id} 
+        id={posts.id} 
+        image={posts.image} 
+        title={posts.title} 
+        content={posts.content} 
+        />
       ))}
     </div>
     

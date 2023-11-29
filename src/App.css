@@ -191,7 +191,6 @@ button:hover {
 
 
 /* CONTACTUS.CSS */
-
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700;900&display=swap");
 
 a {
@@ -199,66 +198,66 @@ a {
   color: #fff;
 }
 
-.text01 {
-  font-family: "Noto Sans KR", sans-serif;
-  padding-top: 2rem;
-  padding-left: 10rem;
+.container {
+  height: 1080px;
+  /* background-color: beige; */
   display: flex;
-  color: white;
-  font-size: 750%;
+  font-size: 2rem;
 }
 
-.text02 {
-  font-family: "Noto Sans KR", sans-serif;
-  padding-left: 10rem;
-  display: flex;
-  color: white;
-  font-size: 400%;
+.box01 {
+  font-size: 4rem;
 }
-.contactus_set01 {
-  width: 370px;
-  height: 850px;
-  display: inline;
-  /* background: #f0f; */
-  position: absolute;
-}
-.contactus_set02 {
-  width: 370px;
-  height: 850px;
-  display: inline;
-  /* background: #f00; */
-  position: absolute;
-  padding-left: 400px;
-}
-.black01 {
-  float: left;
-  width: 45%;
-  height: auto;
-  padding-bottom: 50px;
-  /* background: #000; */
-  position: relative;
+.box02 {
+  font-size: 3rem;
 }
 
-#contactus_img {
-  padding-top: 20px;
-  width: 370px;
-  height: 280px;
+
+.bg001 {
+  margin-left: 10rem;
+  width: 550px;
+  height: 1080px;
+  /* background-color: red; */
+  align-items: baseline;
+  flex-direction: column;
+}
+.bg002 {
+  margin-top: 6rem;
+  width: 500px;
+  height: 1080px;
+  /* background-color: green; */
+}
+.bg003 {
+  margin-top: 6rem;
+  width: 500px;
+  height: 1080px;
+  /* background-color: blue; */
 }
 
-.black02 {
-  padding-top: 50px;
-  float: left;
-  width: 5%;
-  height: auto;
-  /* background: #000; */
-  position: relative;
-}
-
-#main {
+.bg_img01 {
   width: 1920px;
   height: 1080px;
   background-image: url("./Assets/Contactus_bg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+
+/* PostDetail.CSS */
+.PostDetail-img {
+  background-color: #333232;
+  width: 512px;
+  height: 512px;
+  object-fit: fill;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.PostDetail-like {
+  background-color: red;
+}
+
+.PostDetail-nolike {
+  background-color: gray;
 }

@@ -5,13 +5,13 @@
   width: 100vw;
 }
 
-.Main {
+.Mainregion {
   background-color: skyblue;
   position: relative;
   display: relative;
   height: 100%;
   width: 100%;
-  left: 280px;
+  margin-left: 300px;
   float: left;
 }
 

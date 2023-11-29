@@ -3,8 +3,6 @@ import TypingTitle from "../Typing.jsx";
 import SignIn from "../Modals/signInModal.jsx";
 import Loading from "../Components/Loading.jsx";
 import "../Layout.css";
-import Modal from "../Modals/Modal1.jsx";
-import Login from "./Login.jsx";
 import { useNavigate } from "react-router-dom";
 
 // Loading 추가한 뒤에, 자꾸 신택스에러 뜸ㅠㅠㅠㅠㅠ
@@ -44,12 +42,17 @@ function Main() {
   }, []);
 
   function Hi() {
-    navigate('../result')
+    alert('Hi')
   }
+
+  const moveToCreate = () => {
+    navigate('../mainguest')
+  }
+
   return (
     <div className="Main">
       <button onClick={Hi}>Hi</button>
-      <button>Create</button>
+      <button onClick={moveToCreate}>Create</button>
       <SignIn />
       <h1>Hi I'm Joshua</h1>
       <TypingTitle />

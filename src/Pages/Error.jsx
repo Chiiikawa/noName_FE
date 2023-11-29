@@ -1,12 +1,17 @@
-import React from "react";
+import '../App.css';
+import error from '../Assets/Error_box.png';
+
 
 function Error() {
+  
   return (
-    <div className="App">
-      <div className="Error">
-        <h1>Error Page</h1>
+<div>
+    <div id="main"><div id="error">
+      <img src={error} alt="ERROR MESSAGE" />
       </div>
     </div>
+</div>
+
   );
 }
 

@@ -1,21 +1,30 @@
 import React from "react";
 import "./Layout.css";
 import Sidebar from "./Sidebar/Sidebar.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import "./App.css";
 import Main from "./Pages/Main.jsx";
-import Error from "./Pages/Error.jsx";
 import Result from "./Pages/Result.jsx";
+import Mainguest from "./Pages/Mainguest.jsx";
+import ContactUs from "./Pages/ContactUs.jsx";
+import Error from "./Pages/Error.jsx";
 
 const Layout = () => {
   return (
     <div className="Layout">
-      <Sidebar />
       <Routes>
-            <Route path="/Error" element={<Error />} />
-            <Route exact path="/" element={<Main />} />
-            <Route path="/result" element={<Result />} />
+      <Route path="/error" element={<Error />} />
       </Routes>
+      <Sidebar/>
+      <div className="Mainregion">
+      <Routes>
+      <Route index element={<Main />}/>
+      <Route path="mainguest" element={<Mainguest />} />
+      <Route path="result" element={<Result />} />
+      <Route path="contact" element={<ContactUs />} />
+      <Route path="/*" element={<Navigate to={"/error"} />} />
+      </Routes>
+      </div>
     </div>
   );
 };

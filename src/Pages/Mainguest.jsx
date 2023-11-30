@@ -85,8 +85,7 @@ function Mainguest() {
   }, [])
 
   return (
-    <div>
-
+    <div className="Main">
       <button onClick={showModal}>모달 띄우기</button>
       {modalOpen && <PostDetail setModalOpen={setModalOpen} />}
 

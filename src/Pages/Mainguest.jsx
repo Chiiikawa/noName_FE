@@ -32,6 +32,7 @@ function Mainguest() {
       );
       console.log("response.data:", response.data)
       if (response) {
+        console.log(response.data)
         console.log("post를 모두 불러오는 중...");
         setPostList(response.data);
       }
@@ -73,11 +74,12 @@ function Mainguest() {
   // re-render가 될 시에도 실행되는 경우를 방지하기 위해 빈 배열을 넣음
   useEffect(() => {
     createbarInputRef.current.focus();
-    // requestPostsImages();
+    requestPostsImages();
   }, [])
 
   return (
     <div>
+      <div>
       <input type="text" 
       className="Dalle_createbar" 
       value={createbarinput}
@@ -85,15 +87,17 @@ function Mainguest() {
       ref={createbarInputRef}
       placeholder='만들고 싶은 이미지를 적어주세요!' 
       />
+      </div>
         <button className='Dalle_createbutton' onClick={createPostImage}>만들기</button>
+        <div className='Main-container'>
       {postlist.map((posts) => (
         <Posting key={posts.id} 
         id={posts.id} 
-        image={posts.image} 
+        image={posts.generated_image} 
         title={posts.title} 
-        content={posts.content} 
         />
       ))}
+    </div>
     </div>
     
   );

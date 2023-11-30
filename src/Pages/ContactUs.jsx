@@ -1,9 +1,9 @@
 import '../App.css';
-import contactus01 from './Assets/Contactus01.png';
-import contactus02 from './Assets/Contactus02.png';
-import contactus03 from './Assets/Contactus03.png';
-import contactus04 from './Assets/Contactus04.png';
-import contactus05 from './Assets/Contactus05.png';
+import contactus01 from '../Assets/Contactus01.png';
+import contactus02 from '../Assets/Contactus02.png';
+import contactus03 from '../Assets/Contactus03.png';
+import contactus04 from '../Assets/Contactus04.png';
+import contactus05 from '../Assets/Contactus05.png';
 
 
 function ContactUs() {

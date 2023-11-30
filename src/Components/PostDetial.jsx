@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import CommentWrapper from './Commentwrapper';
 
 function PostDetail({ id, image, title, content, author, likes_count, comments_count, is_liked, is_bookmarked }) {
 
@@ -44,6 +45,7 @@ function PostDetail({ id, image, title, content, author, likes_count, comments_c
                 className='PostDetail-img'
             ><button className={islike?'PostDetail-like':'PostDetail-nolike'} onClick={handleLikeClick}>{totallike}</button>
             </img>
+            <CommentWrapper />
         </div>
     )
 }

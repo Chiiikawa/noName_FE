@@ -1,18 +1,21 @@
 .Layout {
   display: grid;
-  grid-template-columns: 280px auto;
+  grid-template-columns: 200px auto;
   
   float: left;
-  height: 100vw;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .Mainregion {
-  background-color: skyblue;
-
-  position: relative;
+  background-color: green;
   display: flex;
   height: 100%;
   width: 100%;
   float: left;
+  position: sticky;
+}
+
+.Mainregion > div {
+  margin: 0 auto;
 }

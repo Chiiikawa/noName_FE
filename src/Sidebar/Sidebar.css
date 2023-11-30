@@ -1,5 +1,5 @@
 .Sidebar {
-    width: 280px;
+    width: 200px;
     height: 100vw;
     background: linear-gradient(
       180deg,
@@ -16,20 +16,32 @@
     display: flex;
   }
   
+  .logoimg{
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .nav_button{
+    height: 3rem;
+    background:none;
+  }
+
   .dropdown {
-    position: fixed;
-    display: inline-block;
+    display: sticky;
     width: 200px;
-    bottom: 30%;
+    margin-top: 10rem;
   }
   
   .loginstatus {
     font: bold 16px;
-    background: #fff;
-    width: 280px;
+    opacity: 100%;
+    background: none;
+    width: 200px;
+    height:3rem;
   }
   .loginstatus:hover {
-    background: pink;
+    background: white;
     transition: ease 1s;
   }
   
@@ -38,8 +50,8 @@
     position: absolute;
     top: auto;
     bottom: 100%;
-    background-color: #f9f9f9;
-    width: 280px;
+    background-color: #ececec;
+    width: 10vw;
     transition: ease 2s;
   }
   
@@ -50,7 +62,7 @@
   }
   
   .dropdown-content a:hover {
-    background-color: #ececec;
+    background-color: red;
     cursor: pointer;
     transition: ease 2s;
   }

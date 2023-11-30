@@ -1,11 +1,11 @@
 // Search bar에 들어갈 거
-
 import { useState, useEffect } from "react";
+import "./App.css"
 
 const TypingTitle = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [count, setCount] = useState(0);
-  const completionWord = "reate your æ";
+  const completionWord = "Create your æ";
 
   useEffect(() => {
     const typingInterval = setInterval(() => {
@@ -17,7 +17,7 @@ const TypingTitle = () => {
         // 이거 글자 초기화되면, 자꾸 쪼그라들어서 일단 이렇게 해둠
         if (count >= completionWord.length) {
           setCount(0);
-          setBlogTitle("C");
+          setBlogTitle(" ");
         }
 
         return result;

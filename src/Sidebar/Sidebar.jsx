@@ -31,14 +31,12 @@ function Sidebar() {
     <div>
       <div className="Sidebar">
         <Link className="sidebarMenu" to={"http://www.노네임.store"}>
-        <img src={logo} alt="NO:NAME LOGO" />
+          <img className="logoimg" src={logo} alt="NO:NAME LOGO" />
         </Link>
         <button className="nav_button" onClick={handleToHome}>Home</button>
         <br></br>
-        <button className="nav_button" >
         <button className="nav_button" onClick={showModal}>모달 띄우기</button>
         {modalOpen && <Signin setModalOpen={setModalOpen} />}
-        </button>
         <br></br>
         <button className="nav_button">Bookmarks</button>
         <br></br>
@@ -56,10 +54,6 @@ function Sidebar() {
           <button className="loginstatus">@username</button>
           <div className="dropdown-content">
             <a href="http://www.노네임.store">Manage Account</a>
-            <a href="http://localhost:3000/contact/"
-         target="_blank"
-         rel="noopener noreferrer">
-      contactus 이동</a>
             <button onClick={showModal}>모달 띄우기</button>
             {modalOpen && <ModalAccManager setModalOpen={setModalOpen} />}
             <a href="http://admin.노네임.store">Logout</a>

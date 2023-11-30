@@ -1,17 +1,22 @@
 .Layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 280px auto;
+  
   float: left;
   height: 100vw;
   width: 100vw;
 }
 
-.Mainregion {
+.Main {
   background-color: skyblue;
+}
+.Mainregion {
+  background-color: rgb(5, 5, 5);
+
   position: relative;
-  display: relative;
+  display: flex;
   height: 100%;
   width: 100%;
-  margin-left: 300px;
   float: left;
 }
 
@@ -69,7 +74,7 @@
 .dropdown-content a:hover {
   background-color: #ececec;
   cursor: pointer;
-  tansition: ease 2s;
+  transition: ease 2s;
 }
 
 .dropdown:hover .dropdown-content {

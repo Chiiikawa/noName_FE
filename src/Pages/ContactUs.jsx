@@ -26,21 +26,21 @@ function ContactUs() {
         <img src={contactus01} alt="곽정원 프로필" />
         </a>
 
-        <a href="https://github.com/Chiiikawa" target="_blank" rel="noreferrer">
+        <a href="https://github.com/tkdcks7" target="_blank" rel="noreferrer">
         <img src={contactus02} alt="강상찬 프로필" />
         </a>
 
-        <a href="https://github.com/Chiiikawa" target="_blank" rel="noreferrer">
+        <a href="https://github.com/DeokYoung980130" target="_blank" rel="noreferrer">
         <img src={contactus03} alt="양덕영 프로필" />
         </a>
       </div>
 
       <div className='bg003'>
-        <a href="https://github.com/Chiiikawa" target="_blank" rel="noreferrer">
+        <a href="https://github.com/lazycaterpillar" target="_blank" rel="noreferrer">
         <img src={contactus04} alt="김지수 프로필" />
         </a>
 
-        <a href="https://github.com/Chiiikawa" target="_blank" rel="noreferrer">
+        <a href="https://github.com/aswssh" target="_blank" rel="noreferrer">
         <img src={contactus05} alt="신선화 프로필" />
         </a>
       </div>

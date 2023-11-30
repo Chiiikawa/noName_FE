@@ -7,11 +7,8 @@
   width: 100vw;
 }
 
-.Main {
-  background-color: skyblue;
-}
 .Mainregion {
-  background-color: rgb(5, 5, 5);
+  background-color: skyblue;
 
   position: relative;
   display: flex;

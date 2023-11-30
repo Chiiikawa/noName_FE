@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import styles from './ModalBasic.module.css';
+import axios from 'axios';
 
-function PostDetail({ id, image, title, content, author, likes_count, comments_count, is_liked, is_bookmarked }) {
+function PostDetail({ id, image, title, content, author, likes_count, comments_count, is_liked, is_bookmarked, setModalOpen }) {
 
     const [islike, setIsLike] = useState(false);
     const [totallike, setTotalLike] = useState(0);
     const [totalcomment, setTotalComment] = useState(0);
     const [bookmark, setBookMark] = useState(false);
     const [commentlist, setCommentList] = useState([]);
+
+    // 모달 끄기
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     // 유저의 likes 여부와 total_like 조회
     async function getPostDetail() {
@@ -34,16 +41,20 @@ function PostDetail({ id, image, title, content, author, likes_count, comments_c
     }
 
 
+
+
     // img tag는 relative, img 안의 likes button은 absolute로 지정. 가리면 z-index 설정바람.
     // like button에 삼항연산자를 사용하여 islike 상태에 따라 다르게 보이게 함.
     return (
         <div>
-            <img
-                src={image}
-                alt="Sorry..."
-                className='PostDetail-img'
-            ><button className={islike?'PostDetail-like':'PostDetail-nolike'} onClick={handleLikeClick}>{totallike}</button>
-            </img>
+            <div className={styles.modalbox}>
+                <div className={styles.modal}>
+                    <a>Hi I'm your Posting Modal!</a>
+                    <button className={styles.close} onClick={closeModal}>
+                        X
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }

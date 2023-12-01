@@ -1,7 +1,7 @@
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./Sidebar.css";
-import Loglog from "../Pages/SignIn.jsx";
+import SignIn from "../Modals/SignIn.jsx";
 import ModalAccManager from "../Modals/MNG-ACC-Modal.jsx";
 import logo from "../Assets/Logo_black.png";
 // Hello mUI
@@ -46,7 +46,7 @@ function Sidebar() {
         <button className="nav_button" onClick={showSignInModal}>
           Modal
         </button>
-        {modalOpen && <Loglog setModalOpen={setModalOpen} />}
+        {modalOpen && <SignIn setModalOpen={setModalOpen} />}
 
         <button className="nav_button">Bookmarks</button>
 

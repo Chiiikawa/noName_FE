@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import TypingTitle from "../Typing.jsx";
-import SignIn from "./SignIn.jsx";
+import SignIn from "../Modals/SignIn.jsx";
 import Loading from "../Components/Loading.jsx";
 import "../Layout.css";
 import axios from "axios";
@@ -119,18 +119,21 @@ function Main() {
     <div className="Main">
       <button onClick={showModal}>모달 띄우기</button>
       {modalOpen && <SignIn setModalOpen={setModalOpen} />}
-
-      <input
-        type="text"
-        className="Dalle_createbar"
-        value={createbarinput}
-        onChange={handleCreatebarInputChange}
-        ref={createbarInputRef}
-        placeholder="만들고 싶은 이미지를 적어주세요!"
-      />
-      <button className="Dalle_createbutton" onClick={createPostImage}>
-        만들기
-      </button>
+      <div className="header">
+        <input
+          type="text"
+          className="Dalle_createbar"
+          value={createbarinput}
+          onChange={handleCreatebarInputChange}
+          ref={createbarInputRef}
+          placeholder="만들고 싶은 이미지를 적어주세요!"
+        />
+        {/* 요거 위에 있는 만들기 버튼으로 대체 */}
+        <a className="btnCreate" onClick={createPostImage}>
+          <span>Create</span>
+          <div class="transition"></div>
+        </a>
+      </div>
       {loading ? <Loading /> : null}
       {postlist.map((posts) => (
         <Posting
@@ -142,11 +145,6 @@ function Main() {
         />
       ))}
       <TypingTitle />
-      {/* 요거 위에 있는 만들기 버튼으로 대체 */}
-      <a className="btnCreate" onClick={createPostImage}>
-        <span>Create</span>
-        <div class="transition"></div>
-      </a>
     </div>
   );
 }

@@ -11,6 +11,8 @@ import Avatar from "@mui/material/Avatar";
 function Sidebar() {
   const navigate = useNavigate();
 
+  //mui function
+
   // 모달창 노출 여부 state
   const [modalOpen, setModalOpen] = useState(false);
 

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-function Signin({ setModalOpen }: PropsType) {
+function Signin({ setModalOpen }) {
   // navigate 선언
   const navigate = useNavigate();
 
@@ -19,7 +19,8 @@ function Signin({ setModalOpen }: PropsType) {
     setModalOpen(false);
   };
   const goToSignUp = () => {
-    window.open('../Pages/Signup.jsx', '_blank')
+    // window.open('../Pages/Signup.jsx', '_blank')
+    closeModal();
   }
 
   const handleEmailChange = (e) => {
@@ -32,10 +33,12 @@ function Signin({ setModalOpen }: PropsType) {
 
   // 로그인 request를 서버로 보내는 함수
   async function handleLoginDataSubmit(e) {
-    e.preventDefault(); // submit으로 인한 page reload를 방지하기 위해 preventDefault 사용
     localStorage.clear(); // 로그인 실행 시, 브라우저 로컬저장소에 있는 값을 모두 날려 충돌 방지 
     try {
       // .env를 바탕으로 backend 상대경로를 지정
+      console.log('URL:', `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/token/`)
+      console.log('email:', email)
+      console.log('password:', password)
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/token/`,
         {
@@ -47,11 +50,11 @@ function Signin({ setModalOpen }: PropsType) {
         localStorage.setItem('ACCESS_TOKEN', response.data.access); //access token을 local storage에 저장
         console.log('로그인 성공!')
         setIsLogin(true);
-        navigate("result");  // token 저장 후 Main page로 이동
+        navigate("mainguest");  // token 저장 후 Main page로 이동
         closeModal(); // mddal 
       }
     } catch (error) {
-      console.error("Authentication failed", error);  // response를 못받아 error를 띄울 경우 콘솔에 에러 띄우기
+      console.log("Authentication failed", error);  // response를 못받아 error를 띄울 경우 콘솔에 에러 띄우기
     }
   }
 

@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState, } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import Posting from "../Components/Posting.jsx";
 
-function MyPage() {
-    [postlist, setPostList] = useState([]);
-    [username, setUserName] = useState('');
-    [email, setEmail] = useState('');
-    [phonenumber, setPhoneNumber] = useState('');
-    [address, setAdress] = useState('');
-    [password, setPassword] = useState('');
+
+function Mypage() {
+    const [postlist, setPostList] = useState([]);
+    const [username, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phonenumber, setPhoneNumber] = useState('');
+    const [address, setAdress] = useState('');
+    const [password, setPassword] = useState('');
 
     // Profile 수정 modal창을 위해서 임시로 배치
     const handleUserNameChange = (e) => {
@@ -62,17 +66,13 @@ function MyPage() {
         if (response) {
             console.log("post를 모두 불러오는 중...");
             let before_filtered_postlist = response.data
-            
+
             setPostList(response.data)
         }
         } catch (error) {
         console.error("Error:", error);
         }
     }
-
-
-
-
 
     return (
         <div className='MyPage-container'>
@@ -107,4 +107,4 @@ function MyPage() {
     )
 }
 
-export default MyPage
+export default Mypage

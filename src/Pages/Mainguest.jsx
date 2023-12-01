@@ -81,7 +81,7 @@ function Mainguest() {
   // re-render가 될 시에도 실행되는 경우를 방지하기 위해 빈 배열을 넣음
   useEffect(() => {
     createbarInputRef.current.focus();
-    // requestPostsImages();
+    requestPostsImages();
   }, [])
 
   return (

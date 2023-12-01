@@ -3,9 +3,9 @@ import axios from 'axios';
 import Comment from './Comment';
 
 function CommentWrapper(post_id, author, comments, is_bookmarked) {
-    [commentslist, setCommentsList] = useState(comments)
-    [commentcontent, setCommentContent] = useState('');
-    [isbookmark, setIsBookMark] = useState(is_bookmarked);
+    const [commentslist, setCommentsList] = useState(comments)
+    const [commentcontent, setCommentContent] = useState('');
+    const [isbookmark, setIsBookMark] = useState(is_bookmarked);
 
     const handleCommentContentChange = (e) => {
         setCommentContent(e.target.value);

@@ -1,19 +1,22 @@
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
-import "../Layout.css";
-import Signin from "../Modals/signInModal.jsx";
+import "./Sidebar.css";
+import Signin from "../Modals/signInModalBase.jsx";
 import ModalAccManager from "../Modals/MNG-ACC-Modal.jsx";
 import logo from '../Assets/Logo_black.png';
 
 // 좌측에 위치할 메뉴들은 기본적으로 출력, 우측에 위치할 userMenu는 조건에 따라 출력
 function Sidebar() {
-  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
 
+  // 모달창 노출 여부 state
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // 모달창 노출
   const showModal = () => {
     setModalOpen(true);
   };
-
+  
   // Main으로 이동하는 함수
   const handleToHome = () => {
     navigate('../')
@@ -28,13 +31,12 @@ function Sidebar() {
     <div>
       <div className="Sidebar">
         <Link className="sidebarMenu" to={"http://www.노네임.store"}>
-        <img src={logo} alt="NO:NAME LOGO" />
+          <img className="logoimg" src={logo} alt="NO:NAME LOGO" />
         </Link>
         <button className="nav_button" onClick={handleToHome}>Home</button>
         <br></br>
-        <button className="nav_button" >
-          <Signin />
-        </button>
+        <button className="nav_button" onClick={showModal}>모달 띄우기</button>
+        {modalOpen && <Signin setModalOpen={setModalOpen} />}
         <br></br>
         <button className="nav_button">Bookmarks</button>
         <br></br>
@@ -52,10 +54,6 @@ function Sidebar() {
           <button className="loginstatus">@username</button>
           <div className="dropdown-content">
             <a href="http://www.노네임.store">Manage Account</a>
-            <a href="http://localhost:3000/contact/"
-         target="_blank"
-         rel="noopener noreferrer">
-      contactus 이동</a>
             <button onClick={showModal}>모달 띄우기</button>
             {modalOpen && <ModalAccManager setModalOpen={setModalOpen} />}
             <a href="http://admin.노네임.store">Logout</a>

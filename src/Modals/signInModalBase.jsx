@@ -1,6 +1,6 @@
 import styles from './ModalBasic.module.css';
 
-function Signin({ setModalOpen, id, title, content, writer }: PropsType) {
+function Signin({ setModalOpen }: PropsType) {
 
     // 모달 끄기
     const closeModal = () => {

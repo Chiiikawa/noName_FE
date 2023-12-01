@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TypingTitle from "../Typing.jsx";
-import SignIn from "../Modals/signInModal.jsx";
+import Signin from "../Modals/signInModalBase.jsx";
 import Loading from "../Components/Loading.jsx";
 import "../Layout.css";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,15 @@ import { useNavigate } from "react-router-dom";
 function Main() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+    // 모달창 노출 여부 state
+    const [modalOpen, setModalOpen] = useState(false);
+
+    // 모달창 노출
+    const showModal = () => {
+      setModalOpen(true);
+    };
+  
 
   function Mod(props) {
     const [singnup, setSignup] = useState(false);
@@ -53,7 +62,8 @@ function Main() {
     <div className="Main">
       <button onClick={Hi}>Hi</button>
       <button onClick={moveToCreate}>Create</button>
-      <SignIn />
+      <button onClick={showModal}>모달 띄우기</button>
+      {modalOpen && <Signin setModalOpen={setModalOpen} />}
       <h1>Hi I'm Joshua</h1>
       <TypingTitle />
       {loading ? <Loading /> : null}

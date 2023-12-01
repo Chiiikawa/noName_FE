@@ -4,9 +4,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Posting from '../Components/Posting';
 import useStore from '../store/store';  // zustand 사용해서 setGeneratedImageUrl 사용
-
+import PostDetail from "../Modals/PostDetail"
 
 function Mainguest() {
+
+      // 모달창 노출 여부 state
+      const [modalOpen, setModalOpen] = useState(false);
+
+      // 모달창 노출
+      const showModal = () => {
+          setModalOpen(true);
+      };
 
   const navigate = useNavigate();  // 다른 페이지로 이동할 수 있도록 navigate 선언
   const [createbarinput, setCreatebarInput] = useState('');
@@ -32,7 +40,6 @@ function Mainguest() {
       );
       console.log("response.data:", response.data)
       if (response) {
-        console.log(response.data)
         console.log("post를 모두 불러오는 중...");
         setPostList(response.data);
       }
@@ -74,12 +81,14 @@ function Mainguest() {
   // re-render가 될 시에도 실행되는 경우를 방지하기 위해 빈 배열을 넣음
   useEffect(() => {
     createbarInputRef.current.focus();
-    requestPostsImages();
+    // requestPostsImages();
   }, [])
 
   return (
-    <div>
-      <div>
+    <div className="Main">
+      <button onClick={showModal}>모달 띄우기</button>
+      {modalOpen && <PostDetail setModalOpen={setModalOpen} />}
+
       <input type="text" 
       className="Dalle_createbar" 
       value={createbarinput}
@@ -87,17 +96,15 @@ function Mainguest() {
       ref={createbarInputRef}
       placeholder='만들고 싶은 이미지를 적어주세요!' 
       />
-      </div>
         <button className='Dalle_createbutton' onClick={createPostImage}>만들기</button>
-        <div className='Main-container'>
       {postlist.map((posts) => (
         <Posting key={posts.id} 
         id={posts.id} 
-        image={posts.generated_image} 
+        image={posts.image} 
         title={posts.title} 
+        content={posts.content} 
         />
       ))}
-    </div>
     </div>
     
   );

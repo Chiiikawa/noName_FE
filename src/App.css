@@ -1,8 +1,4 @@
 .App {
-  float: left;
-  height: 100%;
-  width: 100%;
-  left: 280px;
 }
 
 .App-logo {
@@ -40,26 +36,20 @@
   }
 }
 
-button {
-  border: none;
-  background-color: white;
+.TypingBox{
+  width: 1rem;
+  height: 300px;
 }
 
-button:focus {
-  outline: none;
+button {
+  border: none;
 }
-button:active {
-  color: blue;
-}
+
 
 button:hover {
   cursor: pointer;
   background: grey;
   transition: ease 0.5s;
-}
-
-.TypingBox {
-  height: 500px;
 }
 
 .imgbox {
@@ -212,11 +202,22 @@ a {
   color: #fff;
 }
 
+.bg_img01 {
+  width: 100vw;
+  height: 100vw;
+  background-image: url("./Assets/Contactus_bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: sticky;
+}
+
 .container {
-  height: 1080px;
+  height: 100vw;
   /* background-color: beige; */
   display: flex;
   font-size: 2rem;
+  position: sticky;
 }
 
 .box01 {
@@ -228,12 +229,11 @@ a {
 
 
 .bg001 {
-  margin-left: 10rem;
   width: 550px;
-  height: 1080px;
-  /* background-color: red; */
+  height: 100vw;
   align-items: baseline;
   flex-direction: column;
+  position: relative;
 }
 .bg002 {
   margin-top: 6rem;
@@ -248,14 +248,6 @@ a {
   /* background-color: blue; */
 }
 
-.bg_img01 {
-  width: 1920px;
-  height: 1080px;
-  background-image: url("./Assets/Contactus_bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 
 /* PostDetail.CSS */

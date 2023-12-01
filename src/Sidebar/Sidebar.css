@@ -1,0 +1,123 @@
+.Sidebar {
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #e26a6a 0%,
+    #e26a6a 0%,
+    rgba(222.76, 105.23, 108.68, 0.99) 2%,
+    rgba(200.56, 102.86, 127.86, 0.92) 15%,
+    rgba(55.84, 87.37, 252.88, 0.46) 100%
+  );
+  position: fixed;
+  z-index: 500;
+  flex-direction: column;
+  border-right: 2px solid #000;
+  display: flex;
+  grid-area: sd;
+}
+
+.logoimg {
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.nav_button {
+  height: 3rem;
+  background: none;
+  border: none;
+}
+
+.nav_button:hover {
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  transition: ease 1s;
+}
+
+.loginstatus {
+  font: bold 16px;
+  opacity: 100%;
+  background: none;
+  width: 200px;
+  height: 3rem;
+}
+.loginstatus:hover {
+  background: white;
+  transition: ease 1s;
+}
+
+/*@userprofile*/
+.dropdown {
+  background: none;
+  display: sticky;
+  margin-top: 1rem;
+  width: 200px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+  /*    border:1px solid #6098FF; */
+}
+.dropdown span {
+  background: #00002e;
+  width: 100%;
+  position: relative;
+  padding: 10px 70px;
+  -moz-transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+  /*   border:1px solid #6098FF;  */
+}
+.transition {
+  position: absolute;
+  top: -10%;
+  left: 0%;
+  width: 100%;
+  height: 0%;
+  background: rgb(42, 130, 231);
+  z-index: -1;
+  /*     -ms-transform: skewX(-50deg);
+      -webkit-transform: skewX(-50deg);
+      transform: skewX(-50deg); */
+}
+.dropdown:hover span {
+  color: rgb(42, 130, 231) !important;
+}
+.dropdown:hover .transition {
+  height: 100%;
+  top: 101%;
+  -moz-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -o-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #ececec;
+  width: 10vw;
+  transition: ease 2s;
+}
+
+.dropdown-content a {
+  display: block;
+  text-decoration: none;
+  color: rgb(37, 37, 37);
+}
+
+.dropdown-content a:hover {
+  background-color: red;
+  cursor: pointer;
+  transition: ease 2s;
+}
+
+.dropdown-content {
+  display: block;
+  transition: ease 1s;
+}

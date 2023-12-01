@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import TypingTitle from "../Typing.jsx";
-import Loglog from "./SignIn.jsx";
+import SignIn from "./SignIn.jsx";
 import Loading from "../Components/Loading.jsx";
 import "../Layout.css";
 import axios from "axios";
@@ -118,7 +118,7 @@ function Main() {
   return (
     <div className="Main">
       <button onClick={showModal}>모달 띄우기</button>
-      {modalOpen && <Loglog setModalOpen={setModalOpen} />}
+      {modalOpen && <SignIn setModalOpen={setModalOpen} />}
 
       <input
         type="text"

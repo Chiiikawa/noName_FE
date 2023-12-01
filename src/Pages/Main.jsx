@@ -117,8 +117,6 @@ function Main() {
 
   return (
     <div className="Main">
-      <button onClick={showModal}>모달 띄우기</button>
-      {modalOpen && <SignIn setModalOpen={setModalOpen} />}
       <div className="header">
         <input
           type="text"
@@ -134,17 +132,20 @@ function Main() {
           <div class="transition"></div>
         </a>
       </div>
-      {loading ? <Loading /> : null}
-      {postlist.map((posts) => (
-        <Posting
-          key={posts.id}
-          id={posts.id}
-          image={posts.generated_image}
-          title={posts.title}
-          content={posts.content}
-        />
-      ))}
-      <TypingTitle />
+      <div className="containerArea">
+        <div className="post_box"></div>
+        {loading ? <Loading /> : null}
+        {postlist.map((posts) => (
+          <Posting
+            key={posts.id}
+            id={posts.id}
+            image={posts.generated_image}
+            title={posts.title}
+            content={posts.content}
+          />
+        ))}
+        <TypingTitle />
+      </div>
     </div>
   );
 }

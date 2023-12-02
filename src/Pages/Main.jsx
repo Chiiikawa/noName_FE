@@ -39,7 +39,7 @@ function Main() {
       setPostList([]); // postlist 초기화
       // .env를 바탕으로 backend 상대경로를 지정. Query string을 사용하여 최신순으로 정렬. query string 사용 시 post?_sort=id&_order=desc 넣기
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/`,
+        `${process.env.REACT_APP_BACKEND_URL}/posts/`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
@@ -61,7 +61,7 @@ function Main() {
     try {
       setLoading(true); // 호출 전 loding을 true로 변경
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/dalle/`,
+        `${process.env.REACT_APP_BACKEND_URL}/posts/dalle/`,
         {
           prompt: createbarinput,
         },

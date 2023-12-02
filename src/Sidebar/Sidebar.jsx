@@ -34,6 +34,9 @@ function Sidebar() {
   const handleToMyProfile = () => {
     navigate("../");
   };
+  const handleToContactUs = () => {
+    navigate("/contact");
+  };
 
   return (
     <div>
@@ -60,12 +63,9 @@ function Sidebar() {
 
         <button className="nav_button">Explore</button>
 
-        <button className="nav_button">Error_temp</button>
-
-        <button className="nav_button">Contactus_temp</button>
-
-        <button onClick={showACCModal}>모달 띄우기</button>
-        {modalOpen && <ModalAccManager setModalOpen={setModalOpen} />}
+        <button className="nav_button" onClick={handleToContactUs}>
+          Contact Us
+        </button>
 
         <div class="dropdown1">
           <div className="transition" />
@@ -77,8 +77,7 @@ function Sidebar() {
             @username
           </button>
           <div class="dropdown-content1">
-            <a href="http://www.노네임.store">Manage Account</a>
-            <a onClick={showACCModal}>모달 띄우기</a>
+            <a onClick={showACCModal}>Manage Account</a>
             <a href="http://admin.노네임.store">Logout</a>
           </div>
         </div>

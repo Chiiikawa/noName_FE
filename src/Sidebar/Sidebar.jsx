@@ -34,6 +34,9 @@ function Sidebar() {
   const handleToMyProfile = () => {
     navigate("../");
   };
+  const handleToContactUs = () => {
+    navigate("/contact");
+  };
 
   return (
     <div>
@@ -60,24 +63,21 @@ function Sidebar() {
 
         <button className="nav_button">Explore</button>
 
-        <button className="nav_button">Error_temp</button>
+        <button className="nav_button" onClick={handleToContactUs}>
+          Contact Us
+        </button>
 
-        <button className="nav_button">Contactus_temp</button>
-
-        <button onClick={showACCModal}>모달 띄우기</button>
-        {modalOpen && <ModalAccManager setModalOpen={setModalOpen} />}
-
-        <div className="dropdown">
+        <div class="dropdown1">
           <div className="transition" />
-          <button className="loginstatus">
+          <button class="dropbtn1">
             <Avatar
               alt="Remy Sharp"
               src="https://file.mk.co.kr/meet/neds/2023/09/image_readtop_2023_746119_16960518015645499.jpeg"
             />
+            @username
           </button>
-          <div className="dropdown-content">
-            <a href="http://www.노네임.store">Manage Account</a>
-            <button onClick={showACCModal}>모달 띄우기</button>
+          <div class="dropdown-content1">
+            <a onClick={showACCModal}>Manage Account</a>
             <a href="http://admin.노네임.store">Logout</a>
           </div>
         </div>

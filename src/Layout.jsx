@@ -7,7 +7,6 @@ import Main from "./Pages/Main.jsx";
 import Result from "./Pages/Result.jsx";
 import ContactUs from "./Pages/ContactUs.jsx";
 import Error from "./Pages/Error.jsx";
-import Hey from "./Pages/TestPage.jsx";
 import PostDetail from "./Modals/PostDetail.jsx";
 
 const Layout = () => {
@@ -22,7 +21,6 @@ const Layout = () => {
           <Route index element={<Main />} />
           <Route path="result" element={<Result />} />
           <Route path="contact" element={<ContactUs />} />
-          <Route path="/hey" element={<Hey />} />
           <Route path="details" element={<PostDetail />} />
           <Route path="/*" element={<Navigate to={"/error"} />} />
         </Routes>

@@ -64,6 +64,9 @@ function Sidebar() {
 
         <button className="nav_button">Contactus_temp</button>
 
+        <button onClick={showACCModal}>모달 띄우기</button>
+        {modalOpen && <ModalAccManager setModalOpen={setModalOpen} />}
+
         <div className="dropdown">
           <div className="transition" />
           <button className="loginstatus">

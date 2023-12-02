@@ -36,7 +36,12 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ setModalOpen }: PropsType) {
+  // 모달 끄기
+  const closeSignInModal = () => {
+    setModalOpen(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -49,6 +54,9 @@ export default function SignIn() {
   return (
     <div className={styles.modalbox}>
       <div className={styles.modal}>
+        <button className={styles.close} onClick={closeSignInModal}>
+          X
+        </button>
         <ThemeProvider theme={defaultTheme}>
           <Container component="main" maxWidth="xs">
             <CssBaseline />

@@ -52,7 +52,7 @@ function Main() {
         setPostList(response.data);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error:", error);
     }
   }
 
@@ -79,7 +79,7 @@ function Main() {
       navigate("../result");
     } catch (error) {
       console.log("생성 실패");
-      console.error("Error:", error);
+      console.log("Error:", error);
       setLoading(false);
     }
   }
@@ -146,7 +146,7 @@ function Main() {
           />
         ))}
       </div>
-  </div>
+    </div>
   );
 }
 

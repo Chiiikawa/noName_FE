@@ -66,6 +66,7 @@ export default function SignIn({ setModalOpen }: PropsType) {
   const { is_login, setIsLogin } = useStore();
 
   async function handleSubmit(e) {
+    e.preventDefault();
     localStorage.clear(); // 로그인 실행 시, 브라우저 로컬저장소에 있는 값을 모두 날려 충돌 방지
     try {
       // .env를 바탕으로 backend 상대경로를 지정
@@ -93,86 +94,66 @@ export default function SignIn({ setModalOpen }: PropsType) {
 
   return (
     <div className={styles.modalbox}>
-      <div className={styles.modal}>
-        <button className={styles.close} onClick={closeSignInModal}>
-          X
-        </button>
-        <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-              sx={{
-                marginTop: 8,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign in
-              </Typography>
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                noValidate
-                sx={{ mt: 1 }}
-              >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                  value={email}
-                  onChange={handleEmailChange}
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={handlePasswordChange}
-
-                />
-
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  onSubmit={handleSubmit}
-                  sx={{ mt: 3, mb: 2 }}
+          <div className={styles.modal}>
+            <button className={styles.close} onClick={closeSignInModal}>
+              X
+            </button>
+            <ThemeProvider theme={defaultTheme}>
+              <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
                 >
-                  Sign In
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                  <Grid item>
-                    <button onClick={goToSignUp} variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </button>
-                  </Grid>
-                </Grid>
-              </Box>
-            </Box>
-            <Copyright sx={{ mt: 8, mb: 4 }} />
-          </Container>
-        </ThemeProvider>
-      </div>
-    </div>
+                  <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+                    <LockOutlinedIcon />
+                  </Avatar>
+                  <Typography component="h1" variant="h5">
+                    Sign in
+                  </Typography>
+                  <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    noValidate
+                    sx={{ mt: 1 }}
+                  >
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="email"
+              />
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="password"
+              />
+                    <Button
+                      type="submit"
+                      fullWidth
+                      variant="contained"
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      Sign In
+                    </Button>
+                    <Grid container>
+                      <Grid item>
+                        <button onClick={goToSignUp} variant="body2">
+                          {"Don't have an account? Sign Up"}
+                        </button>
+                      </Grid>
+                    </Grid>
+                  </Box>
+                </Box>
+                <Copyright sx={{ mt: 8, mb: 4 }} />
+              </Container>
+            </ThemeProvider>
+          </div>
+        </div>
   );
 }

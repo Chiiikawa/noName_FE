@@ -8,7 +8,8 @@ import Result from "../Pages/Result.jsx";
 import ContactUs from "../Pages/ContactUs.jsx";
 import Error from "../Pages/Error.jsx";
 import PostDetail from "../Modals/PostDetail.jsx";
-import Mypage from "../Pages/Mypage.jsx"
+import Mypage from "../Pages/Mypage.jsx";
+import Signup from "../Pages/Signup.jsx";
 
 const Layout = () => {
   return (
@@ -19,6 +20,7 @@ const Layout = () => {
       <div className="mainbg">
         <Routes>
           <Route index element={<Main />} />
+          <Route path="signup" element={<Signup />} />
           <Route path="profiles" element={<Mypage />} />
           <Route path="result" element={<Result />} />
           <Route path="contactus" element={<ContactUs />} />
@@ -26,7 +28,7 @@ const Layout = () => {
           <Route path="/*" element={<Navigate to={"/error"} />} />
         </Routes>
       </div>
-    <Sidebar />
+      <Sidebar />
     </div>
   );
 };

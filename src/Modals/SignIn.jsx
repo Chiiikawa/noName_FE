@@ -43,22 +43,37 @@ export default function SignIn({ setModalOpen }: PropsType) {
   const closeSignInModal = () => {
     setModalOpen(false);
   };
+
+  const goToSignUp = () => {
+    window.open('/signup', '_blank')
+    closeSignInModal();
+  };
+
   // navigate 선언
   const navigate = useNavigate();
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { is_login, setIsLogin } = useStore();
 
   async function handleSubmit(e) {
-    localStorage.clear(); // 로그인 실행 시, 브라우저 로컬저장소에 있는 값을 모두 날려 충돌 방지 
+    localStorage.clear(); // 로그인 실행 시, 브라우저 로컬저장소에 있는 값을 모두 날려 충돌 방지
     try {
       // .env를 바탕으로 backend 상대경로를 지정
-      console.log('URL:', `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/token/`)
+      console.log('URL:', `${process.env.REACT_APP_BACKEND_URL}/accounts/token/`)
       console.log('email:', email)
       console.log('password:', password)
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/token/`,
+        `${process.env.REACT_APP_BACKEND_URL}/accounts/token/`,
         {
           email: email,
           password: password,
@@ -69,7 +84,7 @@ export default function SignIn({ setModalOpen }: PropsType) {
         console.log('로그인 성공!')
         setIsLogin(true);
         navigate("/");  // token 저장 후 Main page로 이동
-        closeSignInModal(); // mddal 
+        closeSignInModal(); // mddal
       }
     } catch (error) {
       console.log("Authentication failed", error);  // response를 못받아 error를 띄울 경우 콘솔에 에러 띄우기
@@ -114,6 +129,8 @@ export default function SignIn({ setModalOpen }: PropsType) {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  value={email}
+                  onChange={handleEmailChange}
                 />
                 <TextField
                   margin="normal"
@@ -124,12 +141,16 @@ export default function SignIn({ setModalOpen }: PropsType) {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange={handlePasswordChange}
+
                 />
 
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
+                  onSubmit={handleSubmit}
                   sx={{ mt: 3, mb: 2 }}
                 >
                   Sign In
@@ -141,9 +162,9 @@ export default function SignIn({ setModalOpen }: PropsType) {
                     </Link>
                   </Grid>
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <button onClick={goToSignUp} variant="body2">
                       {"Don't have an account? Sign Up"}
-                    </Link>
+                    </button>
                   </Grid>
                 </Grid>
               </Box>

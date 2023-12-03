@@ -81,7 +81,7 @@ function SignUp() {
   }
 
   return (
-    <div className="SignUp-box">
+    <div>
       <div className="Signup-imagebox">
         <input
           className="signup-profileImg-input"

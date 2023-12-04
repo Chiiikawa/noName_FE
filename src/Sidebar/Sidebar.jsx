@@ -1,6 +1,6 @@
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
-import "../Layout/Layout.css"
+import "../Layout/Layout.css";
 import "./Sidebar.css";
 import "../App.jsx";
 import SignIn from "../Modals/SignIn.jsx";
@@ -20,11 +20,11 @@ function Sidebar() {
 
   // 모달창 노출
   const showSignInModal = () => {
-    setModalOpen(true);
+    setModalSignInOpen(true);
   };
 
   const showACCModal = () => {
-    setModalOpen(true);
+    setModalAccountOpen(true);
   };
 
   // Main으로 이동하는 함수
@@ -41,48 +41,50 @@ function Sidebar() {
   };
 
   return (
-      <div className="Sidebar">
-        <Link className="sidebarMenu" to={"http://www.노네임.store"}>
-          <img className="logoimg" src={logo} alt="NO:NAME LOGO" />
-        </Link>
-        <button className="nav_button" onClick={handleToHome}>
-          Home
+    <div className="Sidebar">
+      <Link className="sidebarMenu" to={"http://www.노네임.store"}>
+        <img className="logoimg" src={logo} alt="NO:NAME LOGO" />
+      </Link>
+      <button className="nav_button" onClick={handleToHome}>
+        Home
+      </button>
+      <br></br>
+      <button className="nav_button" onClick={showSignInModal}>
+        Modal
+      </button>
+      {modalSignInOpen && <SignIn setModalSignInOpen={setModalSignInOpen} />}
+      {modalaccountInOpen && (
+        <ModalAccManager setModalAccountOpen={setModalAccountOpen} />
+      )}
+      <button className="nav_button">Bookmarks</button>
+
+      <button className="nav_button">DM</button>
+
+      <button className="nav_button" onClick={handleToMyProfile}>
+        Profile
+      </button>
+
+      <button className="nav_button">Explore</button>
+
+      <button className="nav_button" onClick={handleToContactUs}>
+        Contact Us
+      </button>
+
+      <div class="dropdown1">
+        <div className="transition" />
+        <button class="dropbtn1">
+          <Avatar
+            alt="Remy Sharp"
+            src="https://file.mk.co.kr/meet/neds/2023/09/image_readtop_2023_746119_16960518015645499.jpeg"
+          />
+          @username
         </button>
-        <br></br>
-        <button className="nav_button" onClick={showSignInModal}>
-          Modal
-        </button>
-        {modalOpen && <SignIn setModalOpen={setModalOpen} />}
-
-        <button className="nav_button">Bookmarks</button>
-
-        <button className="nav_button">DM</button>
-
-        <button className="nav_button" onClick={handleToMyProfile}>
-          Profile
-        </button>
-
-        <button className="nav_button">Explore</button>
-
-        <button className="nav_button" onClick={handleToContactUs}>
-          Contact Us
-        </button>
-
-        <div class="dropdown1">
-          <div className="transition" />
-          <button class="dropbtn1">
-            <Avatar
-              alt="Remy Sharp"
-              src="https://file.mk.co.kr/meet/neds/2023/09/image_readtop_2023_746119_16960518015645499.jpeg"
-            />
-            @username
-          </button>
-          <div class="dropdown-content1">
-            <p onClick={showACCModal}>Manage Account</p>
-            <p href="http://admin.노네임.store">Logout</p>
-          </div>
+        <div class="dropdown-content1">
+          <p onClick={showACCModal}>Manage Account</p>
+          <p href="http://admin.노네임.store">Logout</p>
         </div>
       </div>
+    </div>
   );
 }
 

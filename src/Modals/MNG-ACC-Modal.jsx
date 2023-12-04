@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 function ModalAccManager({ setModalOpen }: PropsType) {
     // 모달 끄기
     const closeACCModal = () => {
-        setModalOpen(false);
+        setModalAccountOpen(false);
     };
     const [showPassword, setShowPassword] = React.useState(false);
 

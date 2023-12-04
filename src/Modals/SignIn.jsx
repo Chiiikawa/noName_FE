@@ -41,7 +41,7 @@ const defaultTheme = createTheme();
 export default function SignIn({ setModalOpen }: PropsType) {
   // 모달 끄기
   const closeSignInModal = () => {
-    setModalOpen(false);
+    setModalSignInOpen(false);(false);
   };
 
   const goToSignUp = () => {

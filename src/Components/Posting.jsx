@@ -6,7 +6,7 @@ function Posting({ id, image, title }) {
   return (
     <div className="post">
       <img
-        src={`${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}${image}`}
+        src={`${process.env.REACT_APP_BACKEND_URL}${image}`}
         alt="No Image"
       />
       <div>{title}</div>

@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 
 
 
-function ModalAccManager({ setModalOpen }: PropsType) {
+function ModalAccManager({ setModalAccountOpen }: PropsType) {
     // 모달 끄기
     const closeACCModal = () => {
         setModalAccountOpen(false);

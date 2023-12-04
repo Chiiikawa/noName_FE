@@ -16,8 +16,8 @@ function Sidebar() {
   //mui function
 
   // 모달창 노출 여부 state
-  const [modalOpen, setModalOpen] = useState(false);
-
+  const [modalSignInOpen, setModalSignInOpen] = useState(false);
+  const [modalaccountInOpen, setModalAccountOpen] = useState(false);
   // 모달창 노출
   const showSignInModal = () => {
     setModalSignInOpen(true);

@@ -38,10 +38,10 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn({ setModalOpen }: PropsType) {
+export default function SignIn({ setModalSignInOpen }: PropsType) {
   // 모달 끄기
   const closeSignInModal = () => {
-    setModalSignInOpen(false);(false);
+    setModalSignInOpen(false);
   };
 
   const goToSignUp = () => {

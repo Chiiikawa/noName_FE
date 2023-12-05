@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Posting from "../Components/Posting.jsx";
 import "../Layout/Layout.css";
@@ -78,7 +78,7 @@ function Mypage() {
           Bookmark-List
         </button>
       </div>
-      <div className="Mypage-grid">
+      <div className="post-box-mypage">
         {ismyposts
           ? mypostlist.map((posts) => (
               <Posting

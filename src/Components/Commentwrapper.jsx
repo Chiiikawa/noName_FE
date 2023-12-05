@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Comment from "./Comment";
 
-function CommentWrapper(id, author, comments, is_bookmarked) {
-  [commentcontent, setCommentContent] = useState("");
+function CommentWrapper(post_id, resdata, commentslist, setCommentsList) {
+  const [commentcontent, setCommentContent] = useState("");
+  const [islike, setIsLike] = useState(resdata.is_liked);
+  const [totallike, setTotalLike] = useState(resdata.likes_count);
+  const [isbookmark, setIsBookMark] = useState(resdata.is_bookmarked);
 
   const handleCommentContentChange = (e) => {
     setCommentContent(e.target.value);
@@ -11,13 +16,14 @@ function CommentWrapper(id, author, comments, is_bookmarked) {
   async function handleCommentCreateSubmit(e) {
     e.preventDefault(); // submit으로 인한 page reload를 방지하기 위해 preventDefault 사용
     try {
-      // .env를 바탕으로 backend 상대경로를 지정
+      let newcomment = {
+        post: post_id,
+        user: localStorage.get("UserName"),
+        content: commentcontent,
+      };
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/${id}/comments/`,
-        {
-          post_id: id,
-          content: content,
-        },
+        `${process.env.REACT_APP_BACKEND_URL}/posts/${post_id}/comments/`,
+        newcomment,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
@@ -25,12 +31,32 @@ function CommentWrapper(id, author, comments, is_bookmarked) {
         }, // 토큰 전달
       );
       if (response) {
-        alert(`포스트 생성 성공!`);
-        setGeneratedImageUrl("");
-        navigate("../"); // Main page로 이동
+        setCommentsList([...commentslist, newcomment]); // 새로 쓴 댓글 newcomment를 commentslist에 추가
+        // 생성된 댓글을 추가해주는 로직 필요
       }
     } catch (error) {
-      console.error("Authentication failed", error); // response를 못받을 경우 콘솔에 에러 띄우기
+      console.log(error); // response를 못받을 경우 콘솔에 에러 띄우기
+    }
+  }
+
+  // 댓글 삭제 함수. 삭제 후 해당 댓글을 commentlist
+  async function handleCommentDelete(id) {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_BACKEND_URL}/posts/${post_id}/comments/`,
+        { id }, // 삭제할 댓글의 id 전달
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
+          },
+        }, // 토큰 전달
+      );
+      if (response) {
+        setCommentsList(commentslist.filter((comment) => comment.id !== id));
+        console.log("댓글이 삭제되었습니다.");
+      }
+    } catch (error) {
+      console.error(error); // response를 못받을 경우 콘솔에 에러 띄우기
     }
   }
 
@@ -41,10 +67,27 @@ function CommentWrapper(id, author, comments, is_bookmarked) {
 
   return (
     <div>
-      {/* 백엔드로부터 받은 comments를 상속받아 Comment component로 띄우기 */}
+      <div className="Comment-container">
+        {commentslist &&
+          commentslist.map((comment) => (
+            <Comment
+              key={comment.id}
+              id={comment.id}
+              post_id={comment.post}
+              user_id={comment.user}
+              profile_image={comment.user_profile_image}
+              author={comment.user_nickname}
+              content={comment.content}
+              created_at={comment.created_at}
+              handleDelete={handleCommentDelete}
+            />
+          ))}
+      </div>
       <div className="formbox">
         <button
-          className={isbookmark ? "PostDetail-bookmark" : "PostDetail-bookmark"}
+          className={
+            isbookmark ? "PostDetail-bookmark" : "PostDetail-nobookmark"
+          }
           onClick={handleBookMarkClick}
         >
           북마크이미지
@@ -53,7 +96,6 @@ function CommentWrapper(id, author, comments, is_bookmarked) {
           type="text"
           value={commentcontent}
           onChange={handleCommentContentChange}
-          ref={commentInputRef}
         />
         <button onClick={handleCommentCreateSubmit}>댓글 입력</button>
       </div>

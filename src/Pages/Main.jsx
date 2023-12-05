@@ -7,6 +7,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useStore from "../store/store";
 import Posting from "../Components/Posting.jsx";
+import PostDetail from "../Modals/PostDetail.jsx";
 
 // Loading 추가한 뒤에, 자꾸 신택스에러 뜸ㅠㅠㅠㅠㅠ
 // Create 버튼 누르면 로딩창 띄우도록 설정해주세s
@@ -131,8 +132,8 @@ function Main() {
       )}
       <div className="containerArea">
         <h1>박스 뜰 영역</h1>
-        <div className="post_box">
-          {loading ? <Loading /> : null}
+        {loading ? <Loading /> : null}
+        <div className="post-box">
           {postlist.map((posts) => (
             <Posting
               key={posts.id}

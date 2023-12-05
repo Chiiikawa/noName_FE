@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useStore from '../store/store';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Avatar from "@mui/material/Avatar";
@@ -62,6 +63,9 @@ export default function SignIn({ setModalSignInOpen }: PropsType) {
     return JSON.parse(atob(token.split('.')[1]).toString());
 }
 
+  // navigate 선언
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { is_login, setIsLogin } = useStore();
@@ -69,29 +73,29 @@ export default function SignIn({ setModalSignInOpen }: PropsType) {
   async function handleSubmit(e) {
     e.preventDefault();
     localStorage.clear(); // 로그인 실행 시, 브라우저 로컬저장소에 있는 값을 모두 날려 충돌 방지
-    try {
-      // .env를 바탕으로 backend 상대경로를 지정
-      console.log('URL:', `${process.env.REACT_APP_BACKEND_URL}/accounts/token/`)
-      console.log('email:', email)
-      console.log('password:', password)
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/accounts/token/`,
-        {
-          email: email,
-          password: password,
-        },
-      );
-      if (response) {
-        localStorage.setItem('ACCESS_TOKEN', response.data.access); //access token을 local storage에 저장
-        console.log('로그인 성공!')
-        setIsLogin(true);
-        navigate("/");  // token 저장 후 Main page로 이동
-        closeSignInModal(); // mddal
+      try {
+        // .env를 바탕으로 backend 상대경로를 지정
+        const response = await axios.post(
+          `${process.env.REACT_APP_BACKEND_URL}/accounts/token/`,
+          {
+            email: email,
+            password: password,
+          },
+        )
+        if (response) {
+          localStorage.setItem('ACCESS_TOKEN', response.data.access); //access token을 local storage에 저장
+          console.log('로그인 성공!');
+          setIsLogin(true);
+          let tokeninfo = parseJwt(response.data.access);
+          console.log("username:", tokeninfo.username);
+          localStorage.setItem("USERNAME", tokeninfo.username)
+          closeSignInModal(); // mddal
+        }
+      } catch (error) {
+        console.log("Authentication failed", error);  // response를 못받아 error를 띄울 경우 콘솔에 에러 띄우기
       }
-    } catch (error) {
-      console.log("Authentication failed", error);  // response를 못받아 error를 띄울 경우 콘솔에 에러 띄우기
-    }
-  };
+    };
+
 
   return (
     <div className={styles.modalbox}>

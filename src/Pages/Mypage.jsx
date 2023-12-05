@@ -1,111 +1,104 @@
-import React, { useState, } from "react";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import axios from "axios";
 import Posting from "../Components/Posting.jsx";
-import "../Layout/Layout.css"
+import "../Layout/Layout.css";
 
 function Mypage() {
-    const [postlist, setPostList] = useState([]);
-    const [username, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phonenumber, setPhoneNumber] = useState('');
-    const [address, setAdress] = useState('');
-    const [password, setPassword] = useState('');
+  const [mypostlist, setMyPostList] = useState([]);
+  const [bookmarkpostlist, setBookMarkPostList] = useState([]);
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phonenumber, setPhoneNumber] = useState("");
+  const [address, setAdress] = useState("");
+  const [ismyposts, setIsMyPosts] = useState(true);
+  const [selectedpost, setSelectedPost] = useState();
+  const [modalPostdetailOpen, setModalPostDetailOpen] = useState(false); // datail page modal을 띄우기 위한 state 설정
 
-    // Profile 수정 modal창을 위해서 임시로 배치
-    const handleUserNameChange = (e) => {
-        setUserName(e.target.value);
-    };
-
-    // const handleEmailChange = (e) => {
-    //     setEmail(e.target.value);
-    // };
-
-    // const handlePhoneNumberChange = (e) => {
-    //     setPhoneNumber(e.target.value);
-    // };
-
-    // const handleAddressChange = (e) => {
-    //     setAdress(e.target.value);
-    // };
-
-    // const handlePasswordChange = (e) => {
-    //     setPassword(e.target.value);
-    // };
-
-
-    async function requestUserProfile() {
-        try {
-        const response = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/profile/`, 
-            { headers: { Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN") },}
-        );
-        console.log("response.data:", response.data)
-        if (response) {
-            console.log("Profile을 모두 불러오는 중...");
-            setUserName(response.data.username);
-            setEmail(response.data.email);
-            setPhoneNumber(response.data.phone_number);
-            setAdress(response.data.address);
-        }
-        } catch (error) {
-        console.error("Authentication failed", error);
-        }
+  // 서버에서 내 profile 정보를 받아오는 함수. 받은 data를 setstate하여 변수의 state를 변경 후 렌더링
+  async function requestUserProfile() {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/accounts/profile/`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
+          },
+        },
+      );
+      console.log("response.data:", response.data);
+      if (response) {
+        console.log("Profile을 모두 불러오는 중...");
+        setUserName(response.data.username);
+        setEmail(response.data.email);
+        setPhoneNumber(response.data.phone_number);
+        setAdress(response.data.address);
+        setMyPostList(response.data.posts);
+        setBookMarkPostList(response.data.bookmark_data);
+      }
+    } catch (error) {
+      console.log("Authentication failed", error);
     }
+  }
 
-        // 서버에서 post를 조회하는 함수
-    async function requestPosts() {
-        try {
-        setPostList([]);  // postlist 초기화
-        const response = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/posts/`, {
-            headers: { Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN") },
-        }
-        );
-        console.log("response.data:", response.data)
-        if (response) {
-            console.log("post를 모두 불러오는 중...");
-            let before_filtered_postlist = response.data
+  // Post를 클릭할 시 detail page modal을 띄우기 위한 함수
+  function handlePostClick(id) {
+    console.log("id:", id);
+    setModalPostDetailOpen(true);
+    setSelectedPost(id);
+  }
 
-            setPostList(response.data)
-        }
-        } catch (error) {
-        console.error("Error:", error);
-        }
-    }
+  const watchMyPostlist = () => {
+    setIsMyPosts(true);
+  };
 
-    return (
-        <div className='MyPage-container'>
-            <div className="profile-container">
-                <img
-                    className='Mypage-profileimage'
-                    src=''
-                    alt='No image'
-                />
-                <div>{username}</div>
-                <div className='Mypage-bio'>
-                    <p>Username: {username}</p>
-                    {/* <p>E-mail: {email}</p>
-                    <p>Phone-number: {phonenumber}</p>
-                    <p>Address: {address}</p> */}
-                </div>
-                <button className="editprofile">Edit bio</button>
-                <button className="editprofile">My feed</button>
-            </div>
-            <div className='Mypage-grid'>
-                <h1>Hey!</h1>
-                {postlist.map((posts) => (
-                    <Posting key={posts.id}
-                        id={posts.id}
-                        image={posts.image}
-                        title={posts.title}
-                        content={posts.content}
-                    />
-                ))}
-            </div>
+  const watchMyBookmarklist = () => {
+    setIsMyPosts(false);
+  };
 
+  useEffect(() => {
+    requestUserProfile();
+  }, []);
+
+  return (
+    <div className="MyPage-container">
+      <div className="profile-container">
+        <img className="Mypage-profileimage" src="" alt="No image" />
+        <div>{username}</div>
+        <div className="Mypage-bio">
+          <p>Username: {username}</p>
+          {/* <p>E-mail: {email}</p>
+                  <p>Phone-number: {phonenumber}</p>
+                  <p>Address: {address}</p> */}
         </div>
-    )
+        <button className="editprofile">Edit bio</button>
+        <button className="editprofile" onClick={watchMyPostlist}>
+          My feed
+        </button>
+        <button className="editprofile" onClick={watchMyBookmarklist}>
+          Bookmark-List
+        </button>
+      </div>
+      <div className="Mypage-grid">
+        {ismyposts
+          ? mypostlist.map((posts) => (
+              <Posting
+                key={posts.id}
+                id={posts.id}
+                imageurl={posts.generated_image}
+                handlePostClick={handlePostClick}
+              />
+            ))
+          : bookmarkpostlist.map((posts) => (
+              <Posting
+                key={posts.post_id}
+                id={posts.post_id}
+                imageurl={posts.generated_image_url}
+                handlePostClick={handlePostClick}
+              />
+            ))}
+      </div>
+    </div>
+  );
 }
 
-export default Mypage
+export default Mypage;

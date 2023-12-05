@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useStore from '../store/store';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Avatar from "@mui/material/Avatar";
@@ -49,8 +48,6 @@ export default function SignIn({ setModalSignInOpen }: PropsType) {
     closeSignInModal();
   };
 
-  // navigate 선언
-  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -60,6 +57,10 @@ export default function SignIn({ setModalSignInOpen }: PropsType) {
     setPassword(e.target.value);
   };
 
+  // token을 decode하여 username을 비롯한 정보를 추출하는 함수
+  function parseJwt (token) {
+    return JSON.parse(atob(token.split('.')[1]).toString());
+}
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

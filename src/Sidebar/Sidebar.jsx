@@ -1,4 +1,4 @@
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
 import "../Layout/Layout.css";
 import "./Sidebar.css";
@@ -18,6 +18,13 @@ function Sidebar() {
   // 모달창 노출 여부 state
   const [modalSignInOpen, setModalSignInOpen] = useState(false);
   const [modalaccountInOpen, setModalAccountOpen] = useState(false);
+
+  // profileimage용 state 설정
+  const [profileimageurl, setProfileImageUrl] = useState('');
+  // useStore 사용
+  const { is_login, setIsLogin } = useStore();
+
+
   // 모달창 노출
   const showSignInModal = () => {
     setModalSignInOpen(true);
@@ -39,6 +46,41 @@ function Sidebar() {
   const handleToContactUs = () => {
     navigate("/contactus");
   };
+
+  // LogOut 함수. LocalStorage를 비운다.
+  function handleLogOut() {
+    localStorage.clear();
+    setIsLogin(false);
+
+    // 서버에서 내 profile 정보를 받아오는 함수. 받은 data를 setstate하여 변수의 state를 변경 후 렌더링
+    async function requestUserProfile() {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/accounts/profile/`,
+          { headers: { Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN") }, }
+        );
+        console.log("response.data:", response.data)
+        if (response) {
+          console.log("Profile을 모두 불러오는 중...");
+          setProfileImageUrl(response.data.profile_image)
+        }
+      } catch (error) {
+        console.log("Authentication failed", error);
+      }
+    }
+
+    // Sidebar를 최초로 렌더링 시 localStorage의 token을 확인하여 로그인 여부를 체크하는 함수
+    function isLoginOrNot() {
+      if (localStorage.getItem("ACCESS_TOKEN") !== null) {
+        setIsLogin(true); // islogin default가 false이기에, else문을 넣을 필요는 없음.
+        requestUserProfile();
+      }
+    }
+
+    // Login 여부 판단 실행. 최초 1회만 실행하기 위해 빈 배열 사용.
+    useEffect(() => {
+      isLoginOrNot();
+    }, [])
 
   return (
     <div className="Sidebar">
@@ -74,14 +116,20 @@ function Sidebar() {
         <div className="transition" />
         <button class="dropbtn1">
           <Avatar
-            alt="Remy Sharp"
-            src="https://file.mk.co.kr/meet/neds/2023/09/image_readtop_2023_746119_16960518015645499.jpeg"
+            alt="No image"
+            src={`${process.env.REACT_APP_BACKEND_URL}${profileimageurl}`}
           />
-          @username
+          {localStorage.getItem('USERNAME')
+            ? localStorage.getItem('USERNAME')
+            : '@Login required'
+          }
         </button>
         <div class="dropdown-content1">
-          <p onClick={showACCModal}>Manage Account</p>
-          <p href="http://admin.노네임.store">Logout</p>
+        {is_login && <p onClick={showACCModal}>Manage Account</p>}
+        {is_login
+          ? <p onClick={handleLogOut}>Logout</p>
+          : <p onClick={showSignInModal}>Signin</p>
+        }
         </div>
       </div>
     </div>

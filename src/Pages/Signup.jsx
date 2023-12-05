@@ -19,6 +19,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordverification, setPasswordVerification] = useState("");
   const [profileimage, setProfileImage] = useState();
+  // const [profileimageforread, setProfileImageForRead] = useState();
 
   const imageRef = useRef();
 
@@ -63,25 +64,24 @@ function SignUp() {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("profile_image", profileimage);
+      // formData.append("profile_image", profileimage[0])
       formData.append("email", email);
       formData.append("username", username);
       formData.append("password", password);
       const response = await axios.post(
         // .env파일에 있는 REACT_APP_BACKEND_URL과 REACT_APP_BACKEND_PORT 변수를 불러와 url을 상대경로로 만듦.
-        `${process.env.REACT_APP_BACKEND_URL}:${process.env.REACT_APP_BACKEND_PORT}/accounts/`,
+        `${process.env.REACT_APP_BACKEND_URL}/accounts/`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }, // content type 설정
       );
       console.log("Signup 진행 중:", response.data);
       navigate("../");
     } catch (error) {
-      console.error("SignUp failed", error);
+      console.log("SignUp failed", error);
     }
   }
-
   return (
-    <div>
+    <div className="SignUp-box">
       <div className="Signup-imagebox">
         <input
           className="signup-profileImg-input"

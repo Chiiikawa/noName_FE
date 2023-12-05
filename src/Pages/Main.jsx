@@ -12,21 +12,16 @@ import Posting from "../Components/Posting.jsx";
 // Create 버튼 누르면 로딩창 띄우도록 설정해주세s
 
 function Main() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [createbarinput, setCreatebarInput] = useState("");
   const [postlist, setPostList] = useState([]);
-  const { setGeneratedImageUrl, setPrompt, setIsLogin } = useStore();
+  const [selectedpost, setSelectedPost] = useState();
+  const { setGeneratedImageUrl, setPrompt } = useStore();
   // page 렌더링 시 createbar에 포커스가 되도록 useRef, useEffect를 사용
   const createbarInputRef = useRef();
-
   // 모달창 노출 여부 state
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // 모달창 노출
-  const showModal = () => {
-    setModalOpen(true);
-  };
+  const [modalPostdetailOpen, setModalPostDetailOpen] = useState(false);
 
   // 클릭하면 렌더 일어남!
   const handleCreatebarInputChange = (e) => {
@@ -37,14 +32,8 @@ function Main() {
   async function requestPostsImages() {
     try {
       setPostList([]); // postlist 초기화
-      // .env를 바탕으로 backend 상대경로를 지정. Query string을 사용하여 최신순으로 정렬. query string 사용 시 post?_sort=id&_order=desc 넣기
       const response = await axios.get(
         `${process.env.REACT_APP_BACKEND_URL}/posts/`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
-          },
-        },
       );
       if (response) {
         console.log("post를 모두 불러오는 중...");
@@ -79,7 +68,7 @@ function Main() {
       navigate("../result");
     } catch (error) {
       console.log("생성 실패");
-      console.log("Error:", error);
+      console.error("Error:", error);
       setLoading(false);
     }
   }
@@ -105,15 +94,17 @@ function Main() {
     }
   };
 
+  function handlePostClick(id) {
+    console.log("id:", id);
+    setModalPostDetailOpen(true);
+    setSelectedPost(id);
+  }
+
   // re-render가 될 시에도 실행되는 경우를 방지하기 위해 빈 배열을 넣음
   useEffect(() => {
     createbarInputRef.current.focus();
     requestPostsImages();
   }, []);
-
-  const moveToCreate = () => {
-    navigate("../mainguest");
-  };
 
   return (
     <div className="MainWallpaper">
@@ -132,19 +123,27 @@ function Main() {
           <div class="transition"></div>
         </a>
       </div>
+      {modalPostdetailOpen && (
+        <PostDetail
+          post_id={selectedpost}
+          setModalPostDetailOpen={setModalPostDetailOpen}
+        />
+      )}
       <div className="containerArea">
         <h1>박스 뜰 영역</h1>
-        <div className="post_box"></div>
-        {loading ? <Loading /> : null}
-        {postlist.map((posts) => (
-          <Posting
-            key={posts.id}
-            id={posts.id}
-            image={posts.generated_image}
-            title={posts.title}
-            content={posts.content}
-          />
-        ))}
+        <div className="post_box">
+          {loading ? <Loading /> : null}
+          {postlist.map((posts) => (
+            <Posting
+              key={posts.id}
+              id={posts.id}
+              imageurl={posts.generated_image}
+              title={posts.title}
+              content={posts.content}
+              handlePostClick={handlePostClick}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
